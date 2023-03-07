@@ -34,5 +34,13 @@ Es handelt sich dabei um eine prinzipielle Ansicht, die die Funktion verdeutlich
 
 # Bewegungsmelder
 
-Über die Funktion der Schaltung um den PIR- Sensor wurde schon in einigen vorausgehenden Forenbeiträgen gerätselt. Leider hat der PIR keine Typenbezeichnung. Vom Aussehen her könnte  es sich um einen D203B handeln. Zumindest ist im zugehörigen [Datenblatt](https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/main/Datasheets/D203B-e.pdf) auf Seite 4 ein sehr ähnliches Schaltbild angegeben, wie es hier verwendet ist.
+Über die Funktion der Schaltung um den PIR- Sensor wurde schon in einigen vorausgehenden Forenbeiträgen gerätselt. Leider hat der PIR keine Typenbezeichnung. Vom Aussehen her könnte  es sich um einen D203B handeln. Zumindest ist im zugehörigen [Datenblatt](https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/main/Datasheets/D203B-e.pdf) auf Seite 4 ein sehr ähnliches Schaltbild angegeben, wie es hier verwendet ist. Die Schaltungen der beiden PIRs sind identisch.
+
+Das Signal des PIR wird zunächst durch einen OpAmp verstärkt. Anschließend wird der Gleichstromanteil des Signals durch einen Koppelkondensator abgetrennt, sodass nur die Flanken ausgewertet werden. Die Flanken werden durch die zweite Hälfte des OpAmp nochmal vestärkt und dann einem nichtinvertierenden und invertierenden Komperator zugeführt. An deren Ausgängen steht dann jeweils ein Impuls für die positive und die neative Flanke zur Verfügung. Für beide PIRs werden diese dann auf vier Eingänge des Atmega gegeben.
+
+Wie man das zugrunde liegenden Sketch auf 4 PIR- Eingänge aufbohrt, ist ja bereits [hier](https://homematic-forum.de/forum/viewtopic.php?f=76&t=44118&hilit=HM+SEC+MDIR) beschrieben.
+
+# Lichtsensor
+
+
 
