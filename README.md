@@ -54,24 +54,26 @@ Im logarithmischen Maßstab handelt es sich dabei um eine Gerade, die sich mit d
 Die Steigung m lässt sich mit m = (y2-y1)/(log(x2)-log(x1)) berechnen.
 Die Referenzwerte VRef1 und VRef3 aus dem Datenblatt eingesetzt ergibt das:
 
-m = (2,13V - 1,3V) / log(0,27 lux - log(25 lux) = -0,415 V/log(lux)
+m = (2,13V - 1,3V) / log(0,27 lux - log(25 lux) = -0,422 V/log(lux)
 
 Die Steigung ist negativ. D.H. große Ausgangsspannung bei Dunkelheit, kleine Spannung bei Helligkei. Des wurde ja in vorhergehenden Beiträgen schon festgestellt.
 
 Um den Achsenabschnitt b zu berechnen können wir die Formel nach b umstellen und den driten Referenzwert VRef2 einsetzen:
 
-b = y - m*log(x) = 1,69V - (-0,415 V/log(lux)*log(3,0 lux) = 1,888
+b = y - m*log(x) = 1,69V - (-0,422 V/log(lux)*log(3,0 lux) = 1,89
 (Stimmt nicht ganz exakt mit der Kurve überein, aber da sind ja auch Toleranzen angegeben.)
 
 Die Formel zur Beschreibung des Lichtsensors lautet also
 
-U = -0,415*log(L)+1,888  ( U in Volt und L in lux)
+U = -0,422*log(L)+1,89  ( U in Volt und L in lux)
 
 Nun messen wir aber den y- wert als Spannung und wollen x in lux wissen. Daher müssen wir die Formel nochmal nach x umstellen:
 
-x = 10 hoch ((y-b)/m)) oder L = 10 hoch ((U-1,888V)/-0,415))  ( U in Volt und L in lux)
+x = 10 hoch ((y-b)/m)) oder L = 10 hoch ((U-1,89V)/-0,422))  ( U in Volt und L in lux)
 
 Nachdem wir am AD- Wandler eine Referenzspannung vom 3,0V haben, können wir mit dem Faktor 3V/1024Digits auch gleich die Rohwerte des AD- Wandlers in die Formel einsetzen um diese Berechnung im Code zu sparen.
 
-Damit ergibt sich 
+Damit ergibt sich L = 10 hoch ((A-646)/-144))  ( A in Digits und L in lux)
+
+Der LMSS-101 kann zwar von 0,1 bis 3000 lux messen, allerdings ist im originalen HM-Sec-MDIR der Messbereich nach oben bei ca. 500 Lux begrenzt und bei 0 Lux gibt es einen Offset von 33 Digits. Dies ist bei der codierung dieses Mathematik- Exkurses ebenfalls zu berücksichtigen.
 
