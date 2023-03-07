@@ -16,6 +16,8 @@ Eigentlich wollte ich einen eigenen Thread zum WMD erstellen, bin dabei aber auf
  
  Hier nochmal die Fotos der beiden im WMD enthaltenen Platinen:
  
- ![](pictures/project.jpg)
+ ![Hauptplatine](https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/main/Pictures/Hauptplatine%20Vorder-%20und%20R%C3%BCckseite.jpg)
+ 
+ 
  
  
