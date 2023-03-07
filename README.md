@@ -16,8 +16,16 @@ Eigentlich wollte ich einen eigenen Thread zum WMD erstellen, bin dabei aber auf
  
  Hier nochmal die Fotos der beiden im WMD enthaltenen Platinen:
  
- ![Hauptplatine](https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/main/Pictures/Hauptplatine%20Vorder-%20und%20R%C3%BCckseite.jpg)
+ Hauptplatine (Vorder- und Rückseite)
+ ![](https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/main/Pictures/Hauptplatine%20Vorder-%20und%20R%C3%BCckseite.jpg)
  
+ Tochterplatine (Vorder- und Rückseite)
+ ![](https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/main/Pictures/Tochterplatine%20Vorder-%20und%20R%C3%BCckseite.jpg)
  
- 
- 
+Als nächstes habe ich die Schaltung analysiert und ein Schaltbild des WMD erstellt:
+
+![](https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/main/Schematic/WMD_Schem.jpg)
+
+[Hier](https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/main/Schematic/WMD_Schem.pdf) nochmal als PDF mit besserer Auflösung.
+
+
