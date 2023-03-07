@@ -42,7 +42,7 @@ Wie man das zugrunde liegenden Sketch auf 4 PIR- Eingänge aufbohrt, ist ja bere
 
 # Lichtsensor
 
-Wie schon in vorhergehenden Forenbeiträgen vermutet, scheint es sich bei dem Lichtsensor um einen LMSS-101 zu handeln. Dafür spricht auch die logarithmische Charakteristik der aufgezeichneten Messwerte. Zur Analyse wurde bei steigender Beleuchtungsstärke mit dem Historian die Kurve eines originalen HM-Sec-MDIR und die Rohwerte des AD- Wandlers am Lichtsensor- Eingang des Atmega aufgezeichnet. Die Werte des WMD sind logarithmisch während der HM-Sec-MDIR weitestgehend linear ist.
+Wie schon in vorhergehenden Forenbeiträgen vermutet, scheint es sich bei dem Lichtsensor um einen LMSS-101 zu handeln. Dafür spricht auch die logarithmische Charakteristik der aufgezeichneten Messwerte. Zur Analyse wurde bei steigender Beleuchtungsstärke mit dem Historian die Kurve eines originalen HM-Sec-MDIR und die Rohwerte des AD- Wandlers am Lichtsensor- Eingang des Atmega aufgezeichnet und zur Auswertung nach Excel übertragen. Die Werte des WMD sind logarithmisch während der HM-Sec-MDIR weitestgehend linear ist.
 
 ![](https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/main/Pictures/Graph1.jpg)
 
