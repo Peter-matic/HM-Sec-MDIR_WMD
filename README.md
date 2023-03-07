@@ -48,6 +48,9 @@ Wie schon in vorhergehenden Forenbeiträgen vermutet, scheint es sich bei dem Li
 
 Es gilt nun, die Kurve des WMD zu linearisiern und auf einen Wertebereich von 8 Bit zu bringen, da im Telegramm nur 8 Bit zur Übertragung zur Verfügung stehen.
 
-Im Datenblatt des [LMSS-101](https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/main/Datasheets/LMSS-101.pdf) sind Referenzwerte und eine Kurve angegeben.
+Im Datenblatt des [LMSS-101](https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/main/Datasheets/LMSS-101.pdf) sind Referenzwerte und eine Kurve (Light Source Dependence) angegeben.
+
+Im logarithmischen Maßstab handelt es sich dabei um eine Gerade, die sich mit der Gleichung y = mx+b beschreiben lässt. Wegen des logarithnischen Maßstabes muss es hier aber heißen: y = m*log(x)+b
+Die Steigung m l
 
 
