@@ -51,6 +51,27 @@ Es gilt nun, die Kurve des WMD zu linearisiern und auf einen Wertebereich von 8 
 Im Datenblatt des [LMSS-101](https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/main/Datasheets/LMSS-101.pdf) sind Referenzwerte und eine Kurve (Light Source Dependence) angegeben.
 
 Im logarithmischen Maßstab handelt es sich dabei um eine Gerade, die sich mit der Gleichung y = mx+b beschreiben lässt. Wegen des logarithnischen Maßstabes muss es hier aber heißen: y = m*log(x)+b
-Die Steigung m l
+Die Steigung m lässt sich mit m = (y2-y1)/(log(x2)-log(x1)) berechnen.
+Die Referenzwerte VRef1 und VRef3 aus dem Datenblatt eingesetzt ergibt das:
 
+m = (2,13V - 1,3V) / log(0,27 lux - log(25 lux) = -0,415 V/log(lux)
+
+Die Steigung ist negativ. D.H. große Ausgangsspannung bei Dunkelheit, kleine Spannung bei Helligkei. Des wurde ja in vorhergehenden Beiträgen schon festgestellt.
+
+Um den Achsenabschnitt b zu berechnen können wir die Formel nach b umstellen und den driten Referenzwert VRef2 einsetzen:
+
+b = y - m*log(x) = 1,69V - (-0,415 V/log(lux)*log(3,0 lux) = 1,888
+(Stimmt nicht ganz exakt mit der Kurve überein, aber da sind ja auch Toleranzen angegeben.)
+
+Die Formel zur Beschreibung des Lichtsensors lautet also
+
+U = -0,415*log(L)+1,888  ( U in Volt und L in lux)
+
+Nun messen wir aber den y- wert als Spannung und wollen x in lux wissen. Daher müssen wir die Formel nochmal nach x umstellen:
+
+x = 10 hoch ((y-b)/m)) oder L = 10 hoch ((U-1,888V)/-0,415))  ( U in Volt und L in lux)
+
+Nachdem wir am AD- Wandler eine Referenzspannung vom 3,0V haben, können wir mit dem Faktor 3V/1024Digits auch gleich die Rohwerte des AD- Wandlers in die Formel einsetzen um diese Berechnung im Code zu sparen.
+
+Damit ergibt sich 
 
