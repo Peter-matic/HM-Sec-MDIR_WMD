@@ -42,5 +42,5 @@ Wie man das zugrunde liegenden Sketch auf 4 PIR- Eingänge aufbohrt, ist ja bere
 
 # Lichtsensor
 
-
+Wie schon in vorhergehenden Forenbeiträgen vermutet, scheint es sich bei dem Lichtsensor um einen LMSS-101 zu handeln. dafür spricht auch die logarithmichhe Charakteristik der aufgezeichneten Messwerte.
 
