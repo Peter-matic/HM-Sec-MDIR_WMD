@@ -92,11 +92,13 @@ Dazu hier ein Bild zum Vergleich vom zwei originalen HM-Sec-MDIR und drei Innogy
 
 # Flashen
 
-Lokalisiereb sie in Ihrer verwendeten IDE den Speicherort für die Library AsksinPP. Die dort befindliche Datei Motion.h umbenennen in z.B. Motion.h.bak.
-Laden sie die datei Maotion.h von hier herunter und speichern sie im Verzeichnis AsksinPP. Laden sie die Dateii LMSS.h von hier herunter und speichern sie im Verzeichnid AsksinPP/Sensors, Laden sie das Sketch HM-Sec-MDIR_WMD.inovon hier herunter. Vergessen Sie nicht, die Device ID und die Device Serial anzupassen.
-Anschließend das Sketch mit einem Programmer (z.B. Diamex) flashen. Nach dem Anlernen an die CCU3 nich vergessen, den Übertragungsmodus von Gesichert auf Standart umzustellen.
+Lokalisieren Sie in Ihrer verwendeten IDE den Speicherort für die Library AsksinPP. Die dort befindliche Datei Motion.h umbenennen in z.B. Motion.h.bak.
+Laden sie die Datei Maotion.h von hier herunter und speichern Sie sie im Verzeichnis AsksinPP. Laden sie die Datei LMSS.h von hier herunter und speichern sie im Verzeichnid AsksinPP/Sensors. Laden sie das Sketch HM-Sec-MDIR_WMD.ino von hier herunter. Vergessen Sie nicht, die Device ID und die Device Serial anzupassen.
+Anschließend das Sketch mit einem Programmer (z.B. Diamex) flashen. Nach dem Anlernen an die CCU3 nicht vergessen, den Übertragungsmodus von Gesichert auf Standart umzustellen.
 
-# Bewegungsmelder
+# Programmierhilfen
+
+Zum Flashen muss man den WMD nicht unbedingt zerlegen. Im Batteriefach befindet sich ein kleiner Slot, hinter dem die 6 PGM Pads angeordnet sind. Bei dem eBay - [Händler]https://www.ebay.de/sch/androegg/m.html?_trkparms=folent%3Aandroegg%7Cfolenttp%3A1&_trksid=p3542580.m47492.l71970 habe ich [diesen]https://www.ebay.de/itm/284884772494?hash=item425474a68e:g:wrsAAOSw82hiw~gJ Pogo-Pin-Adapter mit 2mm- Pitch erstanden, der genau auf den PGM- Port passt.
 
 
 
