@@ -42,7 +42,7 @@ Das Signal des PIR wird zunächst durch einen OpAmp verstärkt. Anschließend wi
 Wie man das zugrunde liegenden Sketch auf 4 PIR- Eingänge aufbohrt, ist ja bereits [hier](https://homematic-forum.de/forum/viewtopic.php?f=76&t=44118&hilit=HM+SEC+MDIR) beschrieben.
 
 Leider war es dann doch nicht so einfach. Wie schon andere vor mir, habe ich bemerkt, dass es bei der Übertragung der Brightness- Werte auch zu Motion- Meldungen kam, die aber überhaupt nicht existierten. Zumächst hatte ich ja meine Amderungen an der Software im Verdacht. Aber nach wirklich sehr langem Suchen, habe ich herausgefunden, dass der WMD sich selber stört.
-Während eim Telegramm zur CCU3 übertragen wird, gehen zum Teil mehrere PIR- Eingänge auf High. Auch ein Sperren der Interrupts während der Tellegrammübertragung hat nicht geholfen, da dies wohl noch einige Zeit nachwirkt. Ich habe deshalb hier in der Motion.h ****https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/main/Library/Motion.h#74
+Während eim Telegramm zur CCU3 übertragen wird, gehen zum Teil mehrere PIR- Eingänge auf High. Auch ein Sperren der Interrupts während der Tellegrammübertragung hat nicht geholfen, da dies wohl noch einige Zeit nachwirkt. Ich habe deshalb hier in der Motion.h ****https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/fc31b6a152e1e91380e87d1c014c7878d2d79fd4/Library/Motion.h#L74
 
 ***** eine Blockierzeit von 500ms eingebaut, während dieser die Interrupts gesperrt sind.
 
