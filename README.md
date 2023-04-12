@@ -42,7 +42,9 @@ Das Signal des PIR wird zunächst durch einen OpAmp verstärkt. Anschließend wi
 Wie man das zugrunde liegenden Sketch auf 4 PIR- Eingänge aufbohrt, ist ja bereits [hier](https://homematic-forum.de/forum/viewtopic.php?f=76&t=44118&hilit=HM+SEC+MDIR) beschrieben.
 
 Leider war es dann doch nicht so einfach. Wie schon andere vor mir, habe ich bemerkt, dass es bei der Übertragung der Brightness- Werte auch zu Motion- Meldungen kam, die aber überhaupt nicht existierten. Zumächst hatte ich ja meine Amderungen an der Software im Verdacht. Aber nach wirklich sehr langem Suchen, habe ich herausgefunden, dass der WMD sich selber stört.
-Während eim Telegramm zur CCU3 übertragen wird, gehen zum Teil mehrere PIR- Eingänge auf High. Auch ein Sperren der Interrupts während der Tellegrammübertragung hat nicht geholfen, da dies wohl noch einige Zeit nachwirkt. Ich habe deshalb hier in der Motion.h ********* eine Blockierzeit von 500ms eingebaut, während dieser die Interrupts gesperrt sind.
+Während eim Telegramm zur CCU3 übertragen wird, gehen zum Teil mehrere PIR- Eingänge auf High. Auch ein Sperren der Interrupts während der Tellegrammübertragung hat nicht geholfen, da dies wohl noch einige Zeit nachwirkt. Ich habe deshalb hier in der Motion.h ****https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/main/Library/Motion.h#74
+
+***** eine Blockierzeit von 500ms eingebaut, während dieser die Interrupts gesperrt sind.
 
 Die Änderung in der Motion.h habe ich zunächst "quick and dirty" gemacht. Die PIR- Eingänge sind ja eigentlich als Parameter an die Klasse übergeben. Ich habe hier aber ohne Parametrierung die Interrupts für den ganzen Port "totgeschlagen". Das funktioniert zunächst einmal, weil außer den 4 PIR- Eingängen nichts auf diesem Port liegt. Wer möchte, kann das ja einmal sauberer programmieren. Wenn ich die Zeit finde, werde ich mich auch mal darum kümmern. Eigentlich wollte ich ja die Header- Dateien nicht anfassen und nur das Sketch ändern. Aber hier hatte ich wohl keine andere Chance.
 
