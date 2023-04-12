@@ -83,9 +83,9 @@ Damit ergibt sich L = 10 hoch ((A-646)/-144))  ( A in Digits und L in lux)
 
 Der LMSS-101 kann zwar von 0,1 bis 3000 lux messen, allerdings ist im originalen HM-Sec-MDIR der Messbereich nach oben bei ca. 500 Lux begrenzt und bei 0 Lux gibt es einen Offset von 33 Digits. Dies ist bei der codierung dieses Mathematik- Exkurses ebenfalls zu berücksichtigen.
 
-Zur Bearbeitung der Brightness- Werte habe ich mich entsvhöossen, ein eigenes Header- File LMSS.h zu erstellen. Alas Vorlage habe ich zunächst das NTC.h genommen, da es sich um ein ähnliche "Dreibein" handelt.
-Als Parameter werden an die Klasse die steigung der Geraden m, der achsenabschnitt b, der Maximalwert und der Minimalwert übergeben. Damit lässt sich die Kurve auch nachträglich noch recht einfach anpassen. auch wemm man den maximalem Messwert bis 3000 Lux ausnutzen möchte. Tatsächlich hat sich bei Kalibrierungsmasseungen auch ergeben, dass die Steigung gegenüber den theoretich berechneten wertwn noch angepasst werden muste.Diese liegt wohl zum Einen an der noch vor dem Sensor befinddlichen Streuscheibe. Zum Anderen haben die einzelnen Sensoren auch eine ganz erhebliche Exemplarstreuung.
-Dazu hier ein Bils zum Vergleich vom zwei originalen HM-Sec-MDIR und drei Innogy WMD.
+Zur Bearbeitung der Brightness- Werte habe ich mich entschlossen, ein eigenes Header- File LMSS.h zu erstellen. Als Vorlage habe ich zunächst das NTC.h genommen, da es sich um ein ähnliches "Dreibein" handelt.
+Als Parameter werden an die Klasse die Steigung der Geraden m, der Achsenabschnitt b, der Maximalwert und der Minimalwert übergeben. Damit lässt sich die Kurve auch nachträglich noch recht einfach anpassen. Auch wenn man den maximalem Messwert bis 3000 Lux ausnutzen möchte. Tatsächlich hat sich bei Kalibrierungsmesseungen auch ergeben, dass die Steigung gegenüber den theoretich berechneten Werten noch angepasst werden muste. Diese liegt wohl zum Einen an der noch vor dem Sensor befindlichen Streuscheibe. Zum Anderen haben die einzelnen Sensoren auch eine ganz erhebliche Exemplarstreuung.
+Dazu hier ein Bild zum Vergleich vom zwei originalen HM-Sec-MDIR und drei Innogy WMD. ************  Als Referenz wurden die Lux- Werte eines originalen HMIP-SLO herangezogen.
 ....
 
 
