@@ -41,10 +41,10 @@ Das Signal des PIR wird zunächst durch einen OpAmp verstärkt. Anschließend wi
 
 Wie man das zugrunde liegenden Sketch auf 4 PIR- Eingänge aufbohrt, ist ja bereits [hier](https://homematic-forum.de/forum/viewtopic.php?f=76&t=44118&hilit=HM+SEC+MDIR) beschrieben.
 
-Leider war es dann doch nicht so einfach. Wie schon andere vor mir, habe ich bemerkt, dass es bei der Übertragung der Brightness- werte auch zu Motion- Meldungen kam, die überhaupt nicht existierten. Zumächst hatte ich ja meine Amderungen an der Software im Verdacht. Aber nach wirklich sehr langem Suchen, habe ich herausgefunden, dass der WMD sich selber stört.
-Wägrend eim Telegramm zur CCU3 übertragen wird, gehen zum Teil nehrere PIR- EingÄnge auf High. Auch ein Sperren der Interrupts während der tellegrammübertragung hat nicht geholfen, da dies wohl nch einige Zeit nachwirkt. Ich habe deshalb hier :::::::: eine Blockierzeit von 500ms eingebaut, während diese die Interrupts gesperrt sind.
+Leider war es dann doch nicht so einfach. Wie schon andere vor mir, habe ich bemerkt, dass es bei der Übertragung der Brightness- Werte auch zu Motion- Meldungen kam, die aber überhaupt nicht existierten. Zumächst hatte ich ja meine Amderungen an der Software im Verdacht. Aber nach wirklich sehr langem Suchen, habe ich herausgefunden, dass der WMD sich selber stört.
+Während eim Telegramm zur CCU3 übertragen wird, gehen zum Teil mehrere PIR- Eingänge auf High. Auch ein Sperren der Interrupts während der Tellegrammübertragung hat nicht geholfen, da dies wohl noch einige Zeit nachwirkt. Ich habe deshalb hier :::::::: eine Blockierzeit von 500ms eingebaut, während diese die Interrupts gesperrt sind.
 
-Die Änderung habe ich zunächst "quick and dirty" gemacht. Die PIR- Eingänge sind ja eigentlich als Parameter an die Klasse übergebe, Ich hane hier aber ohne Parametrierung die Interrupts für den ganzen Port "totgeschlagen". Das funktioniert zunächst einmal. Wer möchte, kann das ja einmal sauberer programmieren.
+Die Änderung habe ich zunächst "quick and dirty" gemacht. Die PIR- Eingänge sind ja eigentlich als Parameter an die Klasse übergeben. Ich habe hier aber ohne Parametrierung die Interrupts für den ganzen Port "totgeschlagen". Das funktioniert zunächst einmal weil außer den 4 PIR- Eingängen nichts auf diesem Port liegt. Wer möchte, kann das ja einmal sauberer programmieren. Wenn ich die zeit finde, werde ich mich auch mal darum kümmern.
 
 # Lichtsensor
 
