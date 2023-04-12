@@ -102,4 +102,4 @@ Zum Flashen muss man den WMD nicht unbedingt zerlegen. Im Batteriefach befindet 
 Mit einem alten Mikroskop habe ich mir eine Vorrichtung gebastelt, mit der ich durch Heben und Senken des Objektträger- Tisches die Innogy- Geräte genau unteter den Abapter positionieren kann.
 
 
-
+Der WMDO wird meine nächste Übung sei. Aber nach dieser Vorarbeit sollte das relativ einfach gehen.
