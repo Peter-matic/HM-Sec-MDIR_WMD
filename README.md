@@ -11,6 +11,7 @@ Eigentlich wollte ich einen eigenen Thread zum WMD erstellen, bin dabei aber auf
  [RWE/Innogy/Livisi Bewegungsmelder WMD - Homematic/AskSinPP Firmware](https://homematic-forum.de/forum/viewtopic.php?f=76&t=64804&hilit=Wmd&start=20)
  
  von @re-vo-lution gestoßen.
+ Gerne möchte ich meine bisherigen Erkenntnisse darüber mit Euch teilen.
  
  Aber nun zum Thema:
  
