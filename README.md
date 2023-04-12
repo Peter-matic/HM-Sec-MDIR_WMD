@@ -92,6 +92,11 @@ Dazu hier ein Bild zum Vergleich vom zwei originalen HM-Sec-MDIR und drei Innogy
 
 # Flashen
 
+Lokalisiereb sie in Ihrer verwendeten IDE den Speicherort für die Library AsksinPP. Die dort befindliche Datei Motion.h umbenennen in z.B. Motion.h.bak.
+Laden sie die datei Maotion.h von hier herunter und speichern sie im Verzeichnis AsksinPP. Laden sie die Dateii LMSS.h von hier herunter und speichern sie im Verzeichnid AsksinPP/Sensors, Laden sie das Sketch HM-Sec-MDIR_WMD.inovon hier herunter. Vergessen Sie nicht, die Device ID und die Device Serial anzupassen.
+Anschließend das Sketch mit einem Programmer (z.B. Diamex) flashen. Nach dem Anlernen an die CCU3 nich vergessen, den Übertragungsmodus von Gesichert auf Standart umzustellen.
+
+# Bewegungsmelder
 
 
 
