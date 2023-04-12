@@ -64,7 +64,7 @@ m = (2,13V - 1,3V) / log(0,27 lux - log(25 lux) = -0,422 V/log(lux)
 
 Die Steigung ist negativ. D.H. große Ausgangsspannung bei Dunkelheit, kleine Spannung bei Helligkei. Des wurde ja in vorhergehenden Beiträgen schon festgestellt.
 
-Um den Achsenabschnitt b zu berechnen können wir die Formel nach b umstellen und den driten Referenzwert VRef2 einsetzen:
+Um den Achsenabschnitt b zu berechnen können wir die Formel nach b umstellen und den dritten Referenzwert VRef2 einsetzen:
 
 b = y - m*log(x) = 1,69V - (-0,422 V/log(lux)*log(3,0 lux) = 1,89
 (Stimmt nicht ganz exakt mit der Kurve überein, aber da sind ja auch Toleranzen angegeben.)
