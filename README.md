@@ -2,7 +2,7 @@
 
 Ich beschäftige mich auch schon eine ganze Weile mit dem WMD.
 
-Aber zunächst einmal meinen vielen Dank an die Experten, die diese hervorragende Vorabeit zur Asksin- Bibliothek und die anderen Sketches für  weiter Innogy - Geräte geleistet haben.
+Aber zunächst einmal meinen vielen Dank an die Experten, die diese hervorragende Vorabeit zur AskSin- Bibliothek und die anderen Sketches für  weiter Innogy - Geräte geleistet haben.
 
 Eigentlich wollte ich einen eigenen Thread zum WMD erstellen, bin dabei aber auf [diesen](https://homematic-forum.de/forum/viewtopic.php?f=76&t=75932&hilit=Wmd) und den ursprünglichen Parallel- Thread 
 
