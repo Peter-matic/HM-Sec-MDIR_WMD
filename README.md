@@ -1,7 +1,5 @@
 # HM-Sec-MDIR_WMD
-Hallo allerseits,
 
-nun muss ich mich doch einmal in die Diskussion einschalten.
 Ich beschäftige mich auch schon eine ganze Weile mit dem WMD.
 
 Aber zunächst einmal meinen vielen Dank an die Experten, die diese hervorragende Vorabeit zur Asksin- Bibliothek und die anderen Sketches für  weiter Innogy - Geräte geleistet haben.
