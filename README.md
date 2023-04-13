@@ -100,8 +100,9 @@ Anschließend das Sketch mit einem Programmer (z.B. Diamex) flashen. Nach dem An
 
 # Programmierhilfen
 
-Zum Flashen muss man den WMD nicht unbedingt zerlegen. Im Batteriefach befindet sich ein kleiner Slot, hinter dem die 6 PGM Pads angeordnet sind. Bei dem eBay - [Händler](https://www.ebay.de/str/androegg) habe ich [diesen](https://www.ebay.de/itm/284884772494?hash=item425474a68e:g:wrsAAOSw82hiw~gJ) Pogo-Pin-Adapter mit 2mm- Pitch erstanden, der genau auf den [PGM- Port des WMD]() und auch anderer passt.
+Zum Flashen muss man den WMD nicht unbedingt zerlegen. Im Batteriefach befindet sich ein kleiner Slot, hinter dem die 6 PGM Pads angeordnet sind. Bei dem eBay - [Händler](https://www.ebay.de/str/androegg) habe ich [diesen](https://www.ebay.de/itm/284884772494?hash=item425474a68e:g:wrsAAOSw82hiw~gJ) Pogo-Pin-Adapter mit 2mm- Pitch erstanden, der genau auf den PGM- Port des WMD und auch anderer passt.
+![](https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/main/Pictures/Pogo%20Adapter%201.jpg)
 Mit einem alten Mikroskop habe ich mir eine Vorrichtung gebastelt, mit der ich durch Heben und Senken des Objektträger- Tisches die Innogy- Geräte genau unteter den Abapter positionieren kann.
-
+![](https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/main/Pictures/Pogo%20Adapter%202.jpg)
 
 Der WMDO wird meine nächste Übung sei. Aber nach dieser Vorarbeit sollte das relativ einfach gehen.
