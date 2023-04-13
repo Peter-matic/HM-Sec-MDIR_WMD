@@ -1,7 +1,7 @@
 //- -----------------------------------------------------------------------------------------------------------------------
 // AskSin++
 // 2016-10-31 papa Creative Commons - http://creativecommons.org/licenses/by-nc-sa/3.0/de/
-// 2023-02-21 modified by Peter.matic Creative Commons - http://creativecommons.org/licenses/by-nc-sa/3.0/de/
+// 2023-04-12 modified by Peter.matic Creative Commons - http://creativecommons.org/licenses/by-nc-sa/3.0/de/
 // ci-test=yes board=328p aes=no
 //- -----------------------------------------------------------------------------------------------------------------------
 
@@ -13,6 +13,7 @@
 
 // define this if you have a BH1750 connected at address 0x23
 // #define USE_BH1750
+
 // define this if you have a LDR or analougue sensor like LMSS-101 at analog input 
 #define USE_LMSS
 
@@ -32,13 +33,13 @@
 // pin to power LMSS-101 (or 0 if connected to vcc)
 #define LMSS_ACTIVATOR_PIN 4
 // curve steepness
-#define LMSS_PARAM_M -129830
-// axis intercept +40000
-#define LMSS_PARAM_B 735690
+#define LMSS_PARAM_M -129561
+// axis intercept 
+#define LMSS_PARAM_B 710343
 // min value of measuring range
-#define LMSS_PARAM_MIN 33
+#define LMSS_PARAM_MIN 34
 // max value of meauring range
-#define LMSS_PARAM_MAX 500
+#define LMSS_PARAM_MAX 600
 #endif
 
 #include <MultiChannelDevice.h>
@@ -61,12 +62,10 @@
 #define BAT_VOLT_LOW        33  // 3.3V low voltage threshold
 #define BAT_VOLT_CRITICAL   30  // 3.0V critical voltage threshold, puts AVR into sleep-forever mode
 // Internal measuring: AVR voltage
-// #define BAT_SENSOR BatterySensor
+//#define BAT_SENSOR BatterySensor
 // External measuring: Potential devider on GPIO; required if a StepUp converter is used
 // one can consider lower thresholds (low=20; cri=13)
-// Devider Factor is in BatterySensor.h preset to 57. In WMD it is 20. Therefore RefVcc has been changed
-// to 3000 * 20 / 57 = 1053
-#define BAT_SENSOR BatterySensorUni<A3,0xFF,1053> // <SensPIN, ActivationPIN, RefVcc>
+#define BAT_SENSOR          BattSensor<SyncMeter<ExternalVCC<A7,0xFF,LOW,3000,20>>>
 
 // number of available peers per channel
 #define PEERS_PER_CHANNEL 6
@@ -76,8 +75,8 @@ using namespace as;
 
 // define all device properties
 const struct DeviceInfo PROGMEM devinfo = {
-    {0x56,0x78,0x91},       // Device ID
-    "PET1005433",           // Device Serial
+    {0x56,0x78,0x90},       // Device ID
+    "PET0000001",           // Device Serial
     {0x00,0x4a},            // Device Model
     0x16,                   // Firmware Version
     as::DeviceType::MotionDetector, // Device Type
@@ -92,12 +91,13 @@ typedef Radio<SPIType,2> RadioType;
 typedef StatusLed<LED_PIN> LedType;
 typedef AskSin<LedType,BAT_SENSOR,RadioType> Hal;
 
+
 #if defined(USE_TSL2561)
 typedef MotionChannel<Hal,PEERS_PER_CHANNEL,List0,Tsl2561<TSL2561_ADDR_LOW> > MChannel;
 #elif defined(USE_BH1750)
 typedef MotionChannel<Hal,PEERS_PER_CHANNEL,List0,Bh1750<0x23> > MChannel;
 #elif defined(USE_LMSS)
-typedef MotionChannel<Hal,PEERS_PER_CHANNEL,List0,Lmss<LMSS_SENSE_PIN,LMSS_ACTIVATOR_PIN,LMSS_PARAM_M,LMSS_PARAM_B,LMSS_PARAM_MIN,LMSS_PARAM_MAX> > MChannel;
+typedef MotionChannel<Hal,PEERS_PER_CHANNEL,List0,Lmss<LMSS_SENSE_PIN,LMSS_ACTIVATOR_PIN,LMSS_PARAM_M,LMSS_PARAM_B,LMSS_PARAM_MIN,LMSS_PARAM_MAX>> MChannel;
 #else	
 typedef MotionChannel<Hal,PEERS_PER_CHANNEL,List0> MChannel;
 #endif
@@ -107,7 +107,6 @@ typedef MultiChannelDevice<Hal,MChannel,1> MotionType;
 Hal hal;
 MotionType sdev(devinfo,0x20);
 ConfigButton<MotionType> cfgBtn(sdev);
-
 
 void setup () {
   DINIT(57600,ASKSIN_PLUS_PLUS_IDENTIFIER);
@@ -130,7 +129,7 @@ void loop() {
     // if we drop below critical battery level - switch off all and sleep forever
     if( hal.battery.critical() ) {
       // this call will never return
-      //hal.activity.sleepForever(hal);
+      hal.activity.sleepForever(hal);
     }
     // if nothing to do - go sleep
     hal.activity.savePower<Sleep<>>(hal);
