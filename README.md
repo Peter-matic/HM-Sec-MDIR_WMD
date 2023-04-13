@@ -88,7 +88,7 @@ Laut Datenblatt hat der Lichtsensor eine Aufwärmzeit von max. 100ms. Eine Oszil
 Dazu hier ein Bild zum Vergleich vom zwei originalen HM-Sec-MDIR und drei Innogy WMD. (Bild folgt noch...)  Als Referenz wurden die Lux- Werte eines originalen HMIP-SLO herangezogen.
 
 Bei der Übergabe des brightness Wertes an die Motion.h ist mir noch aufgefallen, dass der wert hier nochmal skaliert wird. Dies funktioniert am Anfang nicht richtig. Wenn der WMD z.B. bei Dunkelheit gestartet wird, wid solange ein Wert von 255 ausgegeben, bis ein Maximum erreicht wurde und die Helligkeit wieder abnimmt. Um dieses Verhalten zu umgehen habe ich nach einem Neustart einmalig den Wert von 255 übertragen. Alle nachfolgenden Beleuchtungswerte sind dann richtig.
-https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/fc31b6a152e1e91380e87d1c014c7878d2d79fd4/Library/Motion.h#L127
+https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/fc31b6a152e1e91380e87d1c014c7878d2d79fd4/Library/Motion.h#L129
 
 
 
