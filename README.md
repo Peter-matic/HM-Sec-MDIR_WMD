@@ -41,7 +41,7 @@ Als Grundlage für die Anpassung habe ich dieses [Sketch](https://github.com/pa-
 Wie man das zugrunde liegenden Sketch auf 4 PIR- Eingänge aufbohrt, ist ja bereits [hier](https://homematic-forum.de/forum/viewtopic.php?f=76&t=44118&hilit=HM+SEC+MDIR) beschrieben.
 
 Leider war es dann doch nicht so einfach. Wie schon andere vor mir, habe ich bemerkt, dass es bei der Übertragung der Brightness- Werte auch zu Motion- Meldungen kam, die aber überhaupt nicht existierten. Zunächst hatte ich meine Änderungen an der Software im Verdacht. Aber nach wirklich sehr langem Suchen, habe ich herausgefunden, dass der WMD sich selber stört.
-Während eim Telegramm zur CCU3 übertragen wird, gehen zum Teil mehrere PIR- Eingänge auf High. Auch ein Sperren der Interrupts während der Tellegrammübertragung hat nicht geholfen, da dies wohl noch einige Zeit nachwirkt. Ich habe deshalb hier in der Motion.h https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/fc31b6a152e1e91380e87d1c014c7878d2d79fd4/Library/Motion.h#L74 eine Blockierzeit von 750ms eingebaut, während dieser die Interrupts gesperrt sind.
+Während eim Telegramm zur CCU3 übertragen wird, gehen zum Teil mehrere PIR- Eingänge auf High. Ich habe mehrere WMDs. Diese haben auch eine ziemliche Exemplarstreuung. Bei manchen tritt der Effekt sehr stark auf, bei manchen fast gar nicht. Ein Sperren der Interrupts während der Telegrammübertragung hat nicht geholfen, da dies wohl noch einige Zeit nachwirkt. Ich habe deshalb hier in der Motion.h https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/fc31b6a152e1e91380e87d1c014c7878d2d79fd4/Library/Motion.h#L74 eine Blockierzeit von 750ms eingebaut, während dieser die Interrupts gesperrt sind.
 
 Die Änderung in der Motion.h habe ich zunächst "quick and dirty" gemacht. Die PIR- Eingänge sind ja eigentlich als Parameter an die Klasse übergeben. Ich habe hier aber ohne Parametrierung die Interrupts für den ganzen Port "totgeschlagen". Das funktioniert zunächst einmal, weil außer den 4 PIR- Eingängen nichts auf diesem Port liegt. Wer möchte, kann das ja einmal sauberer programmieren. Wenn ich die Zeit finde, werde ich mich auch mal darum kümmern. Eigentlich wollte ich ja die Header- Dateien nicht anfassen und nur das Sketch ändern. Aber hier hatte ich wohl keine andere Chance.
 
@@ -83,9 +83,12 @@ Damit ergibt sich L = 10 hoch ((A-646)/-144))  ( A in Digits und L in lux)
 Der LMSS-101 kann zwar von 0,1 bis 3000 lux messen, allerdings ist im originalen HM-Sec-MDIR der Messbereich nach oben bei ca. 500 Lux begrenzt und bei 0 Lux gibt es einen Offset von 33 Digits. Dies ist bei der codierung dieses Mathematik- Exkurses ebenfalls zu berücksichtigen.
 
 Zur Bearbeitung der Brightness- Werte habe ich mich entschlossen, ein eigenes Header- File LMSS.h zu erstellen. Als Vorlage habe ich zunächst das NTC.h genommen, da es sich um ein ähnliches "Dreibein" handelt.
-Als Parameter werden an die Klasse die Steigung der Geraden m, der Achsenabschnitt b, der Maximalwert und der Minimalwert übergeben. Damit lässt sich die Kurve auch nachträglich noch recht einfach anpassen. Auch wenn man den maximalem Messwert bis 3000 Lux ausnutzen möchte. Tatsächlich hat sich bei Kalibrierungsmesseungen auch ergeben, dass die Steigung gegenüber den theoretich berechneten Werten noch angepasst werden muste. Diese liegt wohl zum Einen an der noch vor dem Sensor befindlichen Streuscheibe. Zum Anderen haben die einzelnen Sensoren auch eine ganz erhebliche Exemplarstreuung.
-Dazu hier ein Bild zum Vergleich vom zwei originalen HM-Sec-MDIR und drei Innogy WMD. ************  Als Referenz wurden die Lux- Werte eines originalen HMIP-SLO herangezogen.
-....
+Als Parameter werden an die Klasse die Steigung der Geraden m, der Achsenabschnitt b, der Maximalwert und der Minimalwert übergeben. Damit lässt sich die Kurve auch nachträglich noch recht einfach anpassen. Auch wenn man den maximalem Messwert bis 3000 Lux ausnutzen möchte. Tatsächlich hat sich bei Kalibrierungsmesseungen auch ergeben, dass die Steigung gegenüber den theoretich berechneten Werten noch angepasst werden muste. Diese liegt wohl zum Einen an der noch vor dem Sensor befindlichen Streuscheibe. Zum Anderen haben die einzelnen Sensoren auch eine ganz erhebliche Exemplarstreuung. Wenn man wollte, könnte man über die Parametrierung jeden WMD einzeln kalibrieren. Aber so genau kommt es wohl auf die Helligkeitsmessung nicht an.
+Laut Datenblatt hat der Lichtsensor eine Aufwärmzeit von max. 100ms. Eine Oszilloskop- Messung hat gezeigt, dass dass 30ms auch genug sind, bis der Wert stabil ansteht. Diese Verzögerung habe ich beim Auslesen des Analogeinganges eingebaut.
+Dazu hier ein Bild zum Vergleich vom zwei originalen HM-Sec-MDIR und drei Innogy WMD. (Bild folgt noch...)  Als Referenz wurden die Lux- Werte eines originalen HMIP-SLO herangezogen.
+
+Bei der Übergabe des brightness Wertes an die Motion.h ist mir noch aufgefallen, dass der wert hier nochmal skaliert wird. Dies funktioniert am Anfang nicht richtig. Wenn der WMD z.B. bei Dunkelheit gestartet wird, wid solange ein Wert von 255 ausgegeben, bis ei Maximum erreicht wurde und die Helligkeit wieder abnimmt. Um dieses Verhalten zu umgehen habe ich nach einem Neustart einmalig den Wert von 255 übertragen. Alle nachfolgenden Beleuchtungswerte sind dann richtig.
+
 
 
 
@@ -97,7 +100,7 @@ Anschließend das Sketch mit einem Programmer (z.B. Diamex) flashen. Nach dem An
 
 # Programmierhilfen
 
-Zum Flashen muss man den WMD nicht unbedingt zerlegen. Im Batteriefach befindet sich ein kleiner Slot, hinter dem die 6 PGM Pads angeordnet sind. Bei dem eBay - [Händler](https://www.ebay.de/str/androegg) habe ich [diesen](https://www.ebay.de/itm/284884772494?hash=item425474a68e:g:wrsAAOSw82hiw~gJ) Pogo-Pin-Adapter mit 2mm- Pitch erstanden, der genau auf den PGM- Port des WMD und auch anderer passt.
+Zum Flashen muss man den WMD nicht unbedingt zerlegen. Im Batteriefach befindet sich ein kleiner Slot, hinter dem die 6 PGM Pads angeordnet sind. Bei dem eBay - [Händler](https://www.ebay.de/str/androegg) habe ich [diesen](https://www.ebay.de/itm/284884772494?hash=item425474a68e:g:wrsAAOSw82hiw~gJ) Pogo-Pin-Adapter mit 2mm- Pitch erstanden, der genau auf den [PGM- Port des WMD]() und auch anderer passt.
 Mit einem alten Mikroskop habe ich mir eine Vorrichtung gebastelt, mit der ich durch Heben und Senken des Objektträger- Tisches die Innogy- Geräte genau unteter den Abapter positionieren kann.
 
 
