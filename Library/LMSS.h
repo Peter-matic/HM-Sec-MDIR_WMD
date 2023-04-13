@@ -28,13 +28,15 @@ Lmss () {}
     }
 
   void measure (__attribute__((unused)) bool async=false) {
-	  
+	
+		
 	static bool start_up;
 	
 	// equation of logarythmic charakteristic of LMSS-101
 	// y = m*log(x)+b  -->  x = 10power((y-b)/m)
 	// x: brightness in [lux], y: analog value in [digits]
 	
+		
 	float exponent = 0.0;
 	float lux = 0.0;
 	uint16_t analog_value = 0;
@@ -45,9 +47,9 @@ Lmss () {}
       pinMode(ACTIVATEPIN, OUTPUT);
       digitalWrite(ACTIVATEPIN, HIGH);
 	// waiting time for warmup of sensor  
-	  delay(50);
+	delay(30);
     }
-	// read analog value
+	//read analog value
     analog_value = analogRead(SENSEPIN);
 		
     if (ACTIVATEPIN) {
@@ -74,7 +76,7 @@ Lmss () {}
 		}
 	
 	_brightness = lux;
-	}
+		}
   
 }; // end class
 } //end namespace
