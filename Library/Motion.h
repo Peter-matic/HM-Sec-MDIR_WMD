@@ -52,8 +52,7 @@ class MotionChannel : public Channel<HalType,MotionList1,EmptyList,DefList4,Peer
     QuietMode (MotionChannel& c) : Alarm(0), enabled(false), motion(false), channel(c) {}
     virtual ~QuietMode () {}
     virtual void trigger (__attribute__ ((unused)) AlarmClock& clock) {
-	DPRINTLN(F("Trigger1"));
-	DPRINTLN(F("minInterval End"));
+	  DPRINTLN(F("minInterval End"));
 	  enabled = false;
       if( motion == true ) {
       motion = false;
@@ -63,7 +62,7 @@ class MotionChannel : public Channel<HalType,MotionList1,EmptyList,DefList4,Peer
   };
 
   // send the brightness every 5 minutes to the master
-  #define LIGHTCYCLE seconds2ticks(1*60)
+  #define LIGHTCYCLE seconds2ticks(5*60)
   class Cycle : public Alarm {
   public:
 	
@@ -71,21 +70,20 @@ class MotionChannel : public Channel<HalType,MotionList1,EmptyList,DefList4,Peer
     Cycle (MotionChannel& c) : Alarm(LIGHTCYCLE), channel(c) {}
     virtual ~Cycle () {}
     virtual void trigger (AlarmClock& clock) {
+	// block interrupts for 750ms during and after channel.sendState()
 	static bool blocking;	
-	DPRINTLN(F("Trigger2"));
-	if (!blocking) {
+	  if (!blocking) {
 	  blocking = true;
 	  PCICR = 0x00;
 	  channel.sendState();
-	  tick = 50;
+	  tick = 75;
 	  clock.add(*this);
     } else {
-	DPRINTLN(F("Unblock"));
-	tick = LIGHTCYCLE;
-    clock.add(*this);
-	blocking = false;
-	PCIFR = 0x07;
-	PCICR = 0x07;
+	  tick = LIGHTCYCLE;
+      clock.add(*this);
+	  blocking = false;
+	  PCIFR = 0x07;
+	  PCICR = 0x07;
 	}
   }
  };
@@ -147,20 +145,16 @@ public:
 
   void pirInterruptOn () {
     isrenabled=true;
-	
-	 
-	
-
   }
 
   void pirInterruptOff () {
     isrenabled=false;
-	
   }
 
   // this runs synch to application
   virtual void trigger (__attribute__ ((unused)) AlarmClock& clock) {
-	  DPRINTLN(F("Trigger3"));
+	  
+	  
 	 
     if( quiet.enabled == false ) {
 		// reset state timer because motion will be send now
@@ -181,9 +175,7 @@ public:
 	  
 	    pirInterruptOff();
       ChannelType::device().sendPeerEvent(msg,*this);
-	  DPRINTLN(F("Message würde gesendet")); 
-	    delayMicroseconds(10000);
-		pirInterruptOn();
+	  	pirInterruptOn();
     }
     else if ( ChannelType::getList1().captureWithinInterval() == true ) {	
       // we have had a motion during quiet interval
@@ -200,42 +192,7 @@ public:
 
   // runs in interrupt
   void motionDetected () {
-    DPRINTLN(F("Interrupt"));
-	/*
-	if (digitalRead(14)==HIGH && fm1==LOW){
-	DPRINTLN(F("F1+"));	
-	fm1 = HIGH;
-	}
-	if (digitalRead(14)==LOW && fm1==HIGH){
-	DPRINTLN(F("F1-"));	
-	fm1 = LOW;
-	}
-	if (digitalRead(15)==HIGH && fm2==LOW){
-	DPRINTLN(F("F2+"));	
-	fm2 = HIGH;
-	}
-	if (digitalRead(15)==LOW && fm2==HIGH){
-	DPRINTLN(F("F2-"));	
-	fm2 = LOW;
-	}
-	if (digitalRead(16)==HIGH && fm3==LOW){
-	DPRINTLN(F("F3+"));	
-	fm3 = HIGH;
-	}
-	if (digitalRead(16)==LOW && fm3==HIGH){
-	DPRINTLN(F("F3-"));	
-	fm3 = LOW;
-	}
-	if (digitalRead(17)==HIGH && fm4==LOW){
-	DPRINTLN(F("F4+"));	
-	fm4 = HIGH;
-	}
-	if (digitalRead(17)==LOW && fm4==HIGH){
-	DPRINTLN(F("F4-"));	
-	fm4 = LOW;
-	}
-  	*/	
-	if( isrenabled==true ) {
+   	if( isrenabled==true ) {
       // cancel may not needed but anyway
       sysclock.cancel(*this);
       // activate motion message handler
