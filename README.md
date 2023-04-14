@@ -85,7 +85,10 @@ Der LMSS-101 kann zwar von 0,1 bis 3000 lux messen, allerdings ist im originalen
 Zur Bearbeitung der Brightness- Werte habe ich mich entschlossen, ein eigenes Header- File LMSS.h zu erstellen. Als Vorlage habe ich zunächst das NTC.h genommen, da es sich um ein ähnliches "Dreibein" handelt.
 Als Parameter werden an die Klasse die Steigung der Geraden m, der Achsenabschnitt b, der Maximalwert und der Minimalwert übergeben. Damit lässt sich die Kurve auch nachträglich noch recht einfach anpassen. Auch wenn man den maximalem Messwert bis 3000 Lux ausnutzen möchte. Tatsächlich hat sich bei Kalibrierungsmesseungen auch ergeben, dass die Steigung gegenüber den theoretich berechneten Werten noch angepasst werden muste. Diese liegt wohl zum Einen an der noch vor dem Sensor befindlichen Streuscheibe. Zum Anderen haben die einzelnen Sensoren auch eine ganz erhebliche Exemplarstreuung. Wenn man wollte, könnte man über die Parametrierung jeden WMD einzeln kalibrieren. Aber so genau kommt es wohl auf die Helligkeitsmessung nicht an.
 Laut Datenblatt hat der Lichtsensor eine Aufwärmzeit von max. 100ms. Eine Oszilloskop- Messung hat gezeigt, dass dass 30ms auch genug sind, bis der Wert stabil ansteht. Diese Verzögerung habe ich beim Auslesen des Analogeinganges eingebaut.
-Dazu hier ein Bild zum Vergleich vom zwei originalen HM-Sec-MDIR und drei Innogy WMD. (Bild folgt noch...)  Als Referenz wurden die Lux- Werte eines originalen HMIP-SLO herangezogen.
+
+Dazu hier ein Bild zum Vergleich vom zwei originalen HM-Sec-MDIR und drei Innogy WMD. Als Referenz wurden die Lux- Werte eines originalen HMIP-SLO herangezogen.
+
+![](https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/main/Pictures/Graph_Vergleich.jpg)
 
 Bei der Übergabe des brightness Wertes an die Motion.h ist mir noch aufgefallen, dass der wert hier nochmal skaliert wird. Dies funktioniert am Anfang nicht richtig. Wenn der WMD z.B. bei Dunkelheit gestartet wird, wid solange ein Wert von 255 ausgegeben, bis ein Maximum erreicht wurde und die Helligkeit wieder abnimmt. Um dieses Verhalten zu umgehen habe ich nach einem Neustart einmalig den Wert von 255 übertragen. Alle nachfolgenden Beleuchtungswerte sind dann richtig.
 https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/fc31b6a152e1e91380e87d1c014c7878d2d79fd4/Library/Motion.h#L129
