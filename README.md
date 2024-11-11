@@ -95,21 +95,23 @@ https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/fc31b6a152e1e91380e87d1c014c
 
 # Update zu Fehlimpulsen bei Bewegungserkennung
 
-Es hatte sich gezeigt, dass bei der Bewegungserkennung Fehlimpulse auftreten, d.h. es wurden Bewegungen erkannt, die nicht vorhanden waren.
-Dazu gab es eine Lösung von jp112sdl.
+Es hatte sich gezeigt, dass trotz meiner Änderung bei der Bewegungserkennung immer noch Fehlimpulse auftreten, d.h. es wurden Bewegungen erkannt, die nicht vorhanden waren.
+Dazu gab es dann eine Lösung von jp112sdl.
 Ich hatte mehrere umgeflashte WMDs mit dieser Lösung nun seit längerer Zeit im Einsatz.
 Die Lösung von @jp112sdl mit den aufeinanderfolgenden positiven und negativen Flanken funktioniert soweit einwandfrei. In den letzten Monaten ist nicht ein einziger Fehlimpuls aufgetreten. An dieser Stelle nochmals vielen Dank für diese Lösung.
 
 Allerdings scheint es so zu sein, dass diese Flankenwechsel nicht immer auftreten. Manchmal dauert es einige Sekunden bis eine Bewegung erkannt wird. Ich habe einen ziemlich dunklen Flur und es stört mich etwas, dass ich bereits drei bis vier Schritte in den Flur hineingelaufen bin und dann hinter mir das Licht angeht. Außerdem ist da ja noch das Thema mit dem gestörten Timing und der vermutlich dadurch hervorgerufenen kurzen Batterielebensdauer.
 
 Deshalb habe ich mich nochmal mit dem Livisi WMD beschäftigt.
-Ich hatte ja damals schon vermutet, dass die Fehlimpulse während des Sendens eines Telegramms auftreten. Eigentlich gibt es aber hier ######## schon eine Sperre, die die Auswirkung des Interrupts unterbindet.
+Ich hatte ja damals schon vermutet, dass die Fehlimpulse während des Sendens eines Telegramms auftreten. Eigentlich gibt es aber hier
+https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/37a0f472b1805e853582d2684b7a13c3b41ba28c/Library/Motion.h#L195
+schon eine Sperre, die die Auswirkung des Interrupts unterbindet.
 
 Ich habe aber festgestellt, dass auch teilweise mehrere 100ms nach dem Telegramm manchmal noch ein ganzer Schwall von Interrupts auftritt. Ich habe versucht, diese mit einem Oszilloskop an den Eingängen nachzuweisen. Das hat jedoch nichts ergeben. Möglicherweise hat die Kapazität der Messleitungen die Eingänge schon bedämpft.
 
-Wenn so viele Interrupts nacheinander auftreten ist der Prozessor wahrscheinlich so lange in den Interrupt Routinen beschäftigt, dass bei deren Bearbeitung der Timer außer Tritt gerät. Damit ließe sich das gestörte Timing erklären.
+Wenn so viele Interrupts nacheinander auftreten, ist der Prozessor wahrscheinlich so lange in den Interrupt Routinen beschäftigt, dass bei deren Bearbeitung der Timer außer Tritt gerät. Damit ließe sich das gestörte Timing erklären.
 
-Ich habe mir eine Routine geschrieben, mit der ich die Zeitdauer der Impulse messen konnte. damit habe ich festgestellt, dass die längsten Fehlimpulse max. 30ms andauern.
+Ich habe mir eine Routine geschrieben, mit der ich die Zeitdauer der Impulse messen konnte. Damit habe ich festgestellt, dass die längsten Fehlimpulse max. 30ms andauern.
 
 Mit diesen Erkenntnissen habe ich folgende Strategie ermittelt:
 
@@ -119,7 +121,7 @@ Ist er länger, also gültig, wird in die eigentliche Interrupt Bearbeitung verz
 
 Der Bewegungsmelder reagiert jetzt sehr schnell (innerhalb 50ms), das Timing funktioniert wieder mit einem Telegramm alle 5 Minuten (ohne Bewegung) und das Thema Batterielebensdauer sollte auch gelöste sein. Jedenfalls messe ich jetzt an den drei Zellen nach gut 4 Monaten Betriebszeit noch eine Spannung von 4,45V. In diese Zeit ist bei drei eingesetzten WMDs auch kein einziger Fehlimpuls aufgetreten.
 
-Den geänderten Sketch stelle ich hier ######### gerne zur Verfügung.
+Den geänderten Sketch stelle ich [hier](https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/main/Sketch/HM-Sec-MDIR_WMD.ino) gerne zur Verfügung.
 
 
 
