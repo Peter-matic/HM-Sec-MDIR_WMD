@@ -127,8 +127,7 @@ Den geänderten Sketch stelle ich [hier](https://github.com/Peter-matic/HM-Sec-M
 
 # Flashen
 
-Lokalisieren Sie in Ihrer verwendeten IDE den Speicherort für die Library AsksinPP. Die dort befindliche Datei Motion.h umbenennen in z.B. Motion.h.bak.
-Laden sie die Datei Motion.h von [hier](https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/main/Library/Motion.h) herunter (Rechtsclick und dann "Link speichern unter..." auswählen) und speichern Sie sie im Verzeichnis AsksinPP. Laden sie die Datei LMSS.h von [hier](https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/main/Library/LMSS.h) herunter und speichern sie im Verzeichnid AsksinPP/Sensors. Laden sie das Sketch HM-Sec-MDIR_WMD.ino von [hier](https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/main/Sketch/HM-Sec-MDIR_WMD.ino) herunter. Vergessen Sie nicht, die Device ID und die Device Serial anzupassen.
+Erstellen Sie ein Verzeichnis HM-Sec-MDIR_WMD. Laden sie den Sketch HM-Sec-MDIR_WMD.ino von [hier](https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/main/Sketch/HM-Sec-MDIR_WMD.ino) herunter und speichern es in diesem Verzeichnis. Laden sie die Datei LMSS.h von [hier](https://github.com/Peter-matic/HM-Sec-MDIR_WMD/blob/main/Library/LMSS.h) herunter und speichern sie im selben Verzeichnis. Vergessen Sie nicht, die Device ID und die Device Serial anzupassen.
 Anschließend das Sketch mit einem Programmer (z.B. Diamex) flashen. Nach dem Anlernen an die CCU3 nicht vergessen, den Übertragungsmodus von Gesichert auf Standart umzustellen.
 
 # Programmierhilfen
