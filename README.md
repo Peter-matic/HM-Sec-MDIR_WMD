@@ -100,7 +100,7 @@ Dazu gab es dann eine Lösung von jp112sdl.
 Ich hatte mehrere umgeflashte WMDs mit dieser Lösung nun seit längerer Zeit im Einsatz.
 Die Lösung von @jp112sdl mit den aufeinanderfolgenden positiven und negativen Flanken funktioniert soweit einwandfrei. In den letzten Monaten ist nicht ein einziger Fehlimpuls aufgetreten. An dieser Stelle nochmals vielen Dank für diese Lösung.
 
-Allerdings scheint es so zu sein, dass diese Flankenwechsel nicht immer auftreten. Manchmal dauert es einige Sekunden bis eine Bewegung erkannt wird. Ich habe einen ziemlich dunklen Flur und es stört mich etwas, dass ich bereits drei bis vier Schritte in den Flur hineingelaufen bin und dann hinter mir das Licht angeht. Außerdem ist da ja noch das Thema mit dem gestörten Timing und der vermutlich dadurch hervorgerufenen kurzen Batterielebensdauer.
+Allerdings scheint es so zu sein, dass diese Flankenwechsel nicht immer auftreten. Manchmal dauert es einige Sekunden bis eine Bewegung erkannt wird. Ich habe einen ziemlich dunklen Flur und es stört mich etwas, dass ich bereits drei bis vier Schritte in den Flur hineingelaufen bin bis dann hinter mir das Licht angeht. Außerdem ist da ja noch das Thema mit dem gestörten Timing und der vermutlich dadurch hervorgerufenen kurzen Batterielebensdauer.
 
 Deshalb habe ich mich nochmal mit dem Livisi WMD beschäftigt.
 Ich hatte ja damals schon vermutet, dass die Fehlimpulse während des Sendens eines Telegramms auftreten. Eigentlich gibt es aber hier
@@ -117,7 +117,7 @@ Mit diesen Erkenntnissen habe ich folgende Strategie ermittelt:
 
 Beim ersten einlaufenden Impuls auf einem Interrupt Eingang werden zunächst einmal alle Interrupts für die vier PIR- Eingänge gesperrt. Dann wird abgeprüft, ob der Impuls mindestens 50ms lang ist. Ist er kürzer, wird er verworfen, das Interrupt-Pending-Register gelöscht und die Interrupts wieder freigegeben.
 
-Ist er länger, also gültig, wird in die eigentliche Interrupt Bearbeitung verzweigt. Dabei wird in der LMSS.h vor dem Absenden des Telegramms an die CCU ein Timer gestartet. Mit diesem Timer werden die Interrupts erst 500ms nach dem Senden des Telegramms wieder freigegeben. Damit werden die Fehlimpulse unterdrückt und der Prozessor soweit von den Interrupt Routinen entlastet, dass das Timing wieder wie vorgesehen funktioniert.
+Ist er länger, also gültig, wird in die eigentliche Interrupt-Bearbeitung verzweigt. Dabei wird in der LMSS.h vor dem Absenden des Telegramms an die CCU ein Timer gestartet. Mit diesem Timer werden die Interrupts erst 500ms nach dem Senden des Telegramms wieder freigegeben. Damit werden die Fehlimpulse unterdrückt und der Prozessor soweit von den Interrupt-Routinen entlastet, dass das Timing wieder wie vorgesehen funktioniert.
 
 Der Bewegungsmelder reagiert jetzt sehr schnell (innerhalb 50ms), das Timing funktioniert wieder mit einem Telegramm alle 5 Minuten (ohne Bewegung) und das Thema Batterielebensdauer sollte auch gelöste sein. Jedenfalls messe ich jetzt an den drei Zellen nach gut 4 Monaten Betriebszeit noch eine Spannung von 4,45V. In diese Zeit ist bei drei eingesetzten WMDs auch kein einziger Fehlimpuls aufgetreten.
 
