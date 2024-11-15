@@ -27,6 +27,8 @@
 #include <AskSinPP.h>
 #include <LowPower.h>
 
+void block_int(void);
+
 #include "LMSS.h"
 // pin to measure LMSS-101
 #define LMSS_SENSE_PIN A6
